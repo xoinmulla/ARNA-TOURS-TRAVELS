@@ -457,7 +457,7 @@ sendSecurityHeaders();
           <div id="heroCarousel" class="hero-carousel" aria-roledescription="carousel"
             aria-label="Arna vehicle showcase">
             <img id="heroCarImg" class="hero-carousel-image car-underglow" src="assets/img/innova-1200.webp"
-              srcset="assets/img/innova-480.webp 480w, assets/img/innova-768.webp 768w, assets/img/innova-1200.webp 1200w, assets/img/innova-1536.webp 1536w"
+              srcset="assets/img/innova-480.webp 480w, assets/img/innova-768.webp 768w, assets/img/innova-1200.webp 1200w, assets/img/ertiga-1536.webp 1536w"
               sizes="(max-width: 900px) 92vw, 46vw" width="1536" height="1024" alt="Arna premium taxi vehicle"
               fetchpriority="high">
             <div class="hero-carousel-controls" aria-label="Vehicle carousel controls"><button type="button"
@@ -1457,7 +1457,7 @@ sendSecurityHeaders();
 
       document.querySelectorAll('.counter').forEach(c => { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { const t = c.dataset.target; c.textContent = t + (t === '20' ? 'K+' : t === '500' ? '+' : 'K+'); io.disconnect() } }), { threshold: .5 }); io.observe(c) });
 
-      const slides = [['assets/img/innova-1200.webp', 'assets/img/innova-480.webp 480w, assets/img/innova-768.webp 768w, assets/img/innova-1200.webp 1200w, assets/img/innova-1536.webp 1536w', 'Arna Innova premium taxi vehicle'], ['assets/img/etios-1200.webp', 'assets/img/etios-480.webp 480w, assets/img/etios-768.webp 768w, assets/img/etios-1200.webp 1200w, assets/img/etios-1536.webp 1536w', 'Arna Etios fleet vehicle'], ['assets/img/car-1-1200.webp', 'assets/img/car-1-480.webp 480w, assets/img/car-1-768.webp 768w, assets/img/car-1-1200.webp 1200w, assets/img/car-1-1536.webp 1536w', 'Arna fleet showcase vehicle']];
+      const slides = [['assets/img/innova-1200.webp', 'assets/img/innova-480.webp 480w, assets/img/innova-768.webp 768w, assets/img/innova-1200.webp 1200w, assets/img/innova-1536.webp 1536w', 'Arna Innova premium taxi vehicle'], ['assets/img/etios-1200.webp', 'assets/img/etios-480.webp 480w, assets/img/etios-768.webp 768w, assets/img/etios-1200.webp 1200w, assets/img/etios-1536.webp 1536w', 'Arna Etios fleet vehicle'], ['assets/img/ertiga-1536.webp', 'assets/img/ertiga-480.webp 480w, assets/img/ertiga-768.webp 768w, assets/img/ertiga-1200.webp 1200w, assets/img/ertiga-1536.webp 1536w', 'Arna fleet showcase vehicle']];
       const img = document.getElementById('heroCarImg'), dots = [...document.querySelectorAll('.hero-carousel-dot')]; let current = 0;
       function show(i) { current = (i + slides.length) % slides.length; img.src = slides[current][0]; img.srcset = slides[current][1]; img.alt = slides[current][2]; dots.forEach((d, n) => { d.classList.toggle('is-active', n === current); d.setAttribute('aria-selected', n === current ? 'true' : 'false') }) }
       document.getElementById('heroPrev')?.addEventListener('click', () => show(current - 1));
