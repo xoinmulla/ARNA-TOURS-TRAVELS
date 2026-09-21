@@ -1,0 +1,28 @@
+Options -Indexes
+DirectoryIndex index.php
+
+# Protect sensitive application files.
+<FilesMatch "^(database\.php|config\.php|api_keys\.php|functions\.php|auth\.php|schema\.sql)$">
+    Require all denied
+</FilesMatch>
+
+# Prevent direct access to environment and source-control files if present.
+<FilesMatch "^(\.env|composer\.(json|lock)|package(-lock)?\.json)$">
+    Require all denied
+</FilesMatch>
+
+# Protect internal admin layout/setup helper files from direct use where possible.
+<FilesMatch "^(admin-layout\.php)$">
+    Require all denied
+</FilesMatch>
+
+
+# Baseline security headers. HSTS is intentionally conditional on HTTPS.
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>

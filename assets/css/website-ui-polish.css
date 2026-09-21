@@ -1,0 +1,166 @@
+/* ARNA WEBSITE UI POLISH
+   Navigation themes, carousel controls, footer actions, mobile menu,
+   and lightweight scroll animations. Design-only; no backend behavior. */
+
+/* ---------- Navbar ---------- */
+#mainNav{
+  --nav-text:#fff;
+  --nav-muted:rgba(255,255,255,.78);
+  --nav-panel:rgba(19,4,36,.84);
+  transition:background-color .35s ease, box-shadow .35s ease, border-color .35s ease, color .25s ease, padding .35s ease;
+}
+
+/* Tour package pages start over a light page background, so the navbar must
+   have its dark ARNA surface by default. The existing nav-light class then
+   switches it to the light version only after the dark hero section. */
+.tour-page #mainNav{
+  background:rgba(19,4,36,.96)!important;
+  border-bottom-color:rgba(255,255,255,.09)!important;
+  box-shadow:0 8px 30px rgba(0,0,0,.16)!important;
+  backdrop-filter:blur(18px);
+}
+.tour-page #mainNav.nav-light{
+  background:rgba(255,255,255,.96)!important;
+  border-bottom-color:rgba(22,9,43,.08)!important;
+  box-shadow:0 8px 28px rgba(22,9,43,.08)!important;
+}
+#mainNav.nav-light{
+  --nav-text:#16092b;
+  --nav-muted:#5f5e6b;
+  --nav-panel:rgba(255,255,255,.92);
+  background:rgba(255,255,255,.92)!important;
+  border-bottom-color:rgba(22,9,43,.08)!important;
+  box-shadow:0 8px 28px rgba(22,9,43,.08)!important;
+  backdrop-filter:blur(18px);
+}
+#mainNav:not(.nav-light).nav-scrolled{
+  background:rgba(19,4,36,.88)!important;
+  backdrop-filter:blur(18px);
+  box-shadow:0 8px 30px rgba(0,0,0,.16)!important;
+  border-bottom-color:rgba(255,255,255,.09)!important;
+}
+#mainNav .nav-logo-text{color:var(--nav-text)!important}
+#mainNav .nav-links-box{background:rgba(255,255,255,.04)}
+#mainNav.nav-light .nav-links-box{
+  background:rgba(22,9,43,.045)!important;
+  border-color:rgba(22,9,43,.10)!important;
+}
+#mainNav .nav-links-box a{color:var(--nav-muted)!important}
+#mainNav.nav-light .nav-links-box a{color:#34274a!important}
+#mainNav.nav-light .nav-dropdown-trigger{color:#34274a!important}
+#mainNav.nav-light .nav-dropdown-trigger:hover{color:#7b42e8!important}
+#mainNav.nav-light .nav-dropdown-chevron{color:inherit!important}
+#mainNav.nav-light .nav-links-box a:hover{color:#7b42e8!important}
+#mainNav #mobileMenuBtn{color:var(--nav-text)!important}
+#mainNav.nav-light #mobileMenuBtn{color:#16092b!important}
+#mainNav .nav-cta{transition:all .3s ease}
+#mainNav.nav-light .nav-cta{background:#16092b!important;color:#fff!important}
+#mainNav.nav-light .nav-cta:hover{background:#8b4df5!important;color:#fff!important}
+
+/* ---------- Mobile menu ---------- */
+@media(max-width:767px){
+  #mainNav{padding-top:14px!important;padding-bottom:14px!important}
+  #mainNav > div:first-child{min-height:54px}
+  #mainNav .nav-logo-text{font-size:1rem!important}
+  #mainNav .nav-links-box{display:none!important}
+  #mainNav #mobileMenuBtn{width:46px;height:46px;padding:0!important;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center}
+  #mainNav.nav-light #mobileMenuBtn{background:rgba(22,9,43,.05);border-color:rgba(22,9,43,.10)}
+  #mainNav #mobileMenu:not(.hidden){display:flex!important;position:absolute;left:14px;right:14px;top:calc(100% - 2px);margin-top:0!important;padding:14px!important;gap:5px!important;flex-direction:column!important;background:rgba(19,4,36,.97)!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:20px!important;box-shadow:0 22px 55px rgba(0,0,0,.28);backdrop-filter:blur(22px);z-index:80}
+  #mainNav.nav-light #mobileMenu:not(.hidden){background:rgba(255,255,255,.98)!important;border-color:rgba(22,9,43,.10)!important}
+  #mainNav #mobileMenu a{display:flex!important;align-items:center;min-height:48px;width:100%;padding:12px 14px!important;border-radius:12px;color:#fff!important;font-size:14px!important;line-height:1.2;white-space:nowrap}
+  #mainNav #mobileMenu a:hover,#mainNav #mobileMenu a:focus-visible{background:rgba(139,77,245,.14);color:#b98cff!important}
+  #mainNav.nav-light #mobileMenu a{color:#241536!important}
+  #mainNav.nav-light #mobileMenu a:hover,#mainNav.nav-light #mobileMenu a:focus-visible{background:rgba(139,77,245,.09);color:#7439dc!important}
+  #mainNav #mobileMenu a:last-child{justify-content:center;margin-top:8px!important;background:#fff!important;color:#16092b!important;border-radius:999px!important;font-weight:800!important}
+  #mainNav.nav-light #mobileMenu a:last-child{background:#16092b!important;color:#fff!important}
+}
+
+/* ---------- Hero carousel controls ---------- */
+.hero-carousel-controls{display:flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;margin-top:10px!important;position:relative;z-index:20}
+.hero-carousel-dots{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:2px!important;height:48px!important}
+.hero-carousel-dot{width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;padding:0!important;border:0!important;background:transparent!important;display:grid!important;place-items:center!important;position:relative!important}
+.hero-carousel-dot::after{content:'';width:8px!important;height:8px!important;border-radius:999px!important;background:rgba(255,255,255,.42)!important;transition:width .3s ease,background .3s ease,box-shadow .3s ease!important}
+.hero-carousel-dot.is-active::after{width:26px!important;background:#9d5eff!important;box-shadow:0 0 18px rgba(157,94,255,.55)!important}
+.hero-carousel-button{width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;border-radius:50%!important;background:rgba(19,4,36,.72)!important;border:1px solid rgba(255,255,255,.18)!important;color:#fff!important;display:grid!important;place-items:center!important;transition:transform .25s ease,background .25s ease,border-color .25s ease!important}
+.hero-carousel-button:hover{transform:translateY(-2px)!important;background:#8b4df5!important;border-color:#8b4df5!important}
+
+/* ---------- Footer Contact / Call / Info actions ---------- */
+footer .footer-contact-actions{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:10px!important;padding-top:4px!important}
+footer .footer-contact-actions a{width:auto!important;height:auto!important;min-height:40px!important;padding:9px 16px!important;border-radius:999px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;font-size:11px!important;font-weight:700!important;letter-spacing:.02em!important;color:rgba(255,255,255,.86)!important;border:1px solid rgba(255,255,255,.13)!important;background:rgba(255,255,255,.045)!important;transition:transform .25s ease,background .25s ease,border-color .25s ease,color .25s ease!important}
+footer .footer-contact-actions a:hover{transform:translateY(-2px)!important;background:#8b4df5!important;border-color:#8b4df5!important;color:#fff!important}
+
+/* ---------- Section entrance motion ---------- */
+.motion-section{transform:translateY(0);opacity:1}
+.motion-section.motion-in{animation:arnaSectionIn .75s cubic-bezier(.2,.72,.2,1) both}
+.motion-item{opacity:1;transform:translateY(0)}
+.motion-section.motion-in .motion-item{animation:arnaItemIn .7s cubic-bezier(.2,.72,.2,1) both;animation-delay:var(--motion-delay,0ms)}
+@keyframes arnaSectionIn{from{opacity:.01;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+@keyframes arnaItemIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* Gentle hover depth for major cards */
+.service-card,.feature-card,.glass-card{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease,border-color .35s ease}
+.service-card:hover,.feature-card:hover{transform:translateY(-6px)}
+
+@media(max-width:767px){
+  .hero-carousel-controls{gap:4px!important;margin-top:4px!important}
+  .hero-carousel-button{width:40px!important;height:40px!important;min-width:40px!important;min-height:40px!important}
+  .hero-carousel-dot{width:38px!important;height:40px!important;min-width:38px!important;min-height:40px!important}
+  .hero-carousel-dot.is-active::after{width:22px!important}
+  footer .footer-contact-actions a{min-height:42px!important;padding:9px 15px!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .motion-section.motion-in,.motion-section.motion-in .motion-item{animation:none!important}
+  .service-card:hover,.feature-card:hover,.hero-carousel-button:hover,footer .footer-contact-actions a:hover{transform:none!important}
+}
+
+/* ---------- Tour Package dropdown ---------- */
+.nav-dropdown{position:relative;display:flex;align-items:center}
+.nav-dropdown-trigger{border:0;background:transparent;cursor:pointer;padding:8px 2px;white-space:nowrap}
+.nav-dropdown-chevron{display:inline-block;margin-left:3px;transition:transform .25s ease}
+.nav-dropdown.is-open .nav-dropdown-chevron{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 12px);left:50%;transform:translate(-50%,8px);min-width:190px;padding:8px;border-radius:16px;background:rgba(19,4,36,.97);border:1px solid rgba(255,255,255,.12);box-shadow:0 22px 55px rgba(0,0,0,.25);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease,transform .2s ease,visibility .2s ease;z-index:100}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown.is-open .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+.nav-dropdown-menu a{display:block;padding:11px 13px;border-radius:10px;color:#fff!important;text-decoration:none;font-size:12px;font-weight:700;white-space:nowrap}
+.nav-dropdown-menu a:hover{background:rgba(139,77,245,.16);color:#c39cff!important}
+#mainNav.nav-light .nav-dropdown-menu{background:rgba(255,255,255,.98);border-color:rgba(22,9,43,.10);box-shadow:0 22px 55px rgba(22,9,43,.15)}
+#mainNav.nav-light .nav-dropdown-menu a{color:#241536!important}
+#mainNav.nav-light .nav-dropdown-menu a:hover{background:rgba(139,77,245,.09);color:#7439dc!important}
+.nav-mobile-package{border-radius:12px}
+.nav-mobile-package-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;min-height:48px;padding:12px 14px;border:0;border-radius:12px;background:transparent;color:#fff;font-size:14px;font-weight:700;text-align:left}
+.nav-mobile-package-menu{display:none;padding:0 8px 8px}
+.nav-mobile-package.is-open .nav-mobile-package-menu{display:block}
+.nav-mobile-package-menu a{display:flex!important;min-height:44px!important;padding:10px 14px!important;margin:2px 0;color:rgba(255,255,255,.78)!important;font-size:13px!important}
+#mainNav.nav-light .nav-mobile-package-trigger{color:#241536}
+#mainNav.nav-light .nav-mobile-package-menu a{color:#5f5e6b!important}
+
+/* ---------- Testimonial carousel ---------- */
+.testimonial-track{position:relative;min-height:290px}
+.testimonial-slide{display:none;animation:testimonialIn .55s cubic-bezier(.2,.72,.2,1) both}
+.testimonial-slide.is-active{display:block}
+.testimonial-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:18px}
+.testimonial-arrow{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:#fff;display:grid;place-items:center;cursor:pointer;transition:.25s ease}
+.testimonial-arrow:hover{background:#8b4df5;border-color:#8b4df5;transform:translateY(-2px)}
+.testimonial-dots{display:flex;gap:7px;align-items:center}
+.testimonial-dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:.25s ease}
+.testimonial-dot.is-active{width:28px;border-radius:999px;background:#9d5eff}
+@keyframes testimonialIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(max-width:767px){.nav-dropdown{display:none}.testimonial-track{min-height:360px}.testimonial-slide{padding:28px!important}.testimonial-slide blockquote{font-size:1.3rem!important}.testimonial-controls{margin-top:14px}}
+
+
+/* ---------- Tour page navbar/hero alignment ---------- */
+.tour-page main{padding-top:0!important}
+.tour-page .tour-hero{padding-top:7.5rem!important}
+@media(max-width:767px){.tour-page .tour-hero{padding-top:6.5rem!important}}
+
+/* ---------- Homepage Tour Packages ---------- */
+.tour-package-card{transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s ease}.tour-package-card:hover{transform:translateY(-8px)}.tour-placeholder-orbit{width:150px;height:150px;border-radius:50%;border:1px solid rgba(139,77,245,.18);box-shadow:0 0 0 28px rgba(139,77,245,.035),0 0 0 56px rgba(139,77,245,.025);position:absolute}.tour-placeholder-orbit:after{content:'';position:absolute;inset:35px;border-radius:50%;background:radial-gradient(circle,rgba(139,77,245,.22),rgba(139,77,245,.02) 65%,transparent 70%)}
+@media(max-width:767px){.tour-package-card{border-radius:22px}.tour-package-card:hover{transform:none}}
+
+/* Official Arna logo */
+.arna-header-logo{width:58px;height:58px;display:block;object-fit:contain;flex:0 0 auto;filter:drop-shadow(0 6px 14px rgba(139,77,245,.16))}
+.arna-brand-link{min-width:0}
+.arna-footer-logo{display:block;width:96px;height:96px;object-fit:contain;margin:0 auto 12px}
+.arna-page-logo{display:inline-block;width:110px;height:110px;object-fit:contain}
+.admin-brand-logo{width:62px;height:62px;object-fit:contain;display:block;flex:0 0 auto}
+@media(max-width:767px){.arna-header-logo{width:48px;height:48px}.arna-brand-link .nav-logo-text{font-size:16px}.arna-footer-logo{width:82px;height:82px}.arna-page-logo{width:90px;height:90px}}

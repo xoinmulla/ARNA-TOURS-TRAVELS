@@ -1,0 +1,193 @@
+/* ARNA RESPONSIVE FIX */
+*,*::before,*::after{box-sizing:border-box}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{min-width:0}
+.container{max-width:1180px}
+.home__content{min-width:0}
+.home__data,.home__visual,.home-swiper,.swiper-wrapper,.swiper-slide{min-width:0}
+.car-slide img{max-width:100%;height:auto;object-fit:contain}
+
+@media (max-width: 1100px){
+  .nav__list{gap:22px}
+  .home__content{grid-template-columns:45% 55%}
+  .home__title{font-size:clamp(44px,6vw,68px)}
+  .home__circle{width:470px;height:470px}
+  .home__visual{height:560px}
+  .home-swiper{height:450px}
+  .car-slide img{width:min(100%,560px)}
+}
+
+@media (max-width: 900px){
+  .container{width:calc(100% - 34px);max-width:700px}
+  .home{min-height:auto;padding-top:82px;overflow:hidden}
+  .home__content{
+    width:100%;
+    max-width:700px;
+    margin-inline:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    min-height:0;
+  }
+  .home__data{width:100%;padding:58px 0 0}
+  .home__visual{
+    width:100%;
+    max-width:100%;
+    height:440px;
+    margin:0;
+    position:relative;
+    overflow:visible;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .home__circle{
+    width:min(430px,78vw);
+    height:min(430px,78vw);
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+  }
+  .home-swiper{
+    width:100%;
+    max-width:100%;
+    height:410px;
+    overflow:hidden;
+  }
+  .car-slide{width:100%;display:flex;align-items:center;justify-content:center}
+  .car-slide img{width:min(92%,560px);max-width:560px;height:auto;margin:auto;object-fit:contain}
+  .home__badge{right:4%;top:4%;width:92px;height:92px}
+  .home__arrows{right:0;bottom:62px}
+  .home__pagination{bottom:15px!important}
+  .home__scroll{display:none}
+  .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fleet-wrap{grid-template-columns:minmax(0,1fr)}
+  .fleet-cards{width:100%;min-height:500px}
+  .about-grid{grid-template-columns:minmax(0,1fr)}
+}
+
+@media (max-width: 600px){
+  .container{width:calc(100% - 28px)}
+  .nav{height:70px}
+  .home{padding-top:70px}
+  .home__data{padding-top:48px}
+  .eyebrow{font-size:8px;letter-spacing:.14em}
+  .home__title{font-size:clamp(40px,14vw,62px);line-height:.92}
+  .home__description{font-size:13px;line-height:1.7}
+  .home__buttons{flex-direction:column;gap:10px}
+  .button{width:100%;padding:14px 18px}
+  .home__trust{gap:0;justify-content:space-between;margin-top:30px}
+  .home__trust strong{font-size:18px}
+  .home__trust span{font-size:9px}
+  .home__visual{height:350px;margin-top:5px}
+  .home__circle{width:min(315px,82vw);height:min(315px,82vw)}
+  .home-swiper{height:330px}
+  .car-slide img{width:96%;max-width:430px}
+  .home__badge{width:78px;height:78px;right:0;top:2%}
+  .home__badge strong{font-size:14px}
+  .home__badge span{font-size:6px}
+  .home__arrows{right:5px;bottom:54px}
+  .home__arrows button{width:44px;height:44px}
+  .home__pagination{bottom:7px!important}
+  .section{padding:75px 0}
+  .section-head h2,.fleet-copy h2,.about-copy h2{font-size:clamp(38px,11vw,54px)}
+  .service-grid{grid-template-columns:1fr;gap:12px}
+  .service-card{min-height:0;padding:28px 23px}
+  .service-icon{margin-bottom:24px}
+  /* Mobile fleet: show each vehicle card one-by-one.
+     Desktop/tablet keep the original layered/offset presentation. */
+  .fleet-cards{
+    width:100%;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    padding-bottom:8px;
+  }
+  .fleet-card,
+  .fleet-card--offset{
+    position:relative;
+    top:auto;
+    right:auto;
+    left:auto;
+    width:100%;
+    max-width:100%;
+    margin:0;
+    transform:none;
+    z-index:auto;
+  }
+  .fleet-card img{height:210px}
+  .about-stats{gap:12px;justify-content:space-between}
+  .about-stats strong{font-size:19px}
+  .about-stats span{font-size:8px}
+  .cta{padding:60px 0}
+  .cta h2{font-size:clamp(38px,11vw,54px)}
+  .footer-inner{align-items:flex-start}
+}
+
+@media (max-width: 360px){
+  .container{width:calc(100% - 24px)}
+  .nav__logo span{font-size:19px}
+  .home__data{padding-top:40px}
+  .home__title{font-size:39px}
+  .home__trust{gap:8px}
+  .home__trust strong{font-size:17px}
+  .home__visual{height:320px}
+  .home__circle{width:275px;height:275px}
+  .home-swiper{height:300px}
+  .car-slide img{width:100%;max-width:360px}
+  .home__badge{width:70px;height:70px}
+}
+
+
+/* QA fixes: touch targets, carousel separation, and reduced motion */
+.service-card a {
+  min-height: 44px;
+  padding: 10px 0;
+  display: inline-flex;
+  align-items: center;
+}
+.nav__toggle,
+.nav__close,
+.home__arrows button {
+  min-width: 44px;
+  min-height: 44px;
+}
+.nav__toggle,
+.nav__close {
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.home__pagination {
+  bottom: 8px !important;
+  z-index: 5;
+}
+.home__arrows {
+  right: 5px;
+  bottom: 54px;
+  z-index: 6;
+}
+.home__arrows button {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+}
+.nav__toggle:focus-visible,
+.nav__close:focus-visible,
+.home__arrows button:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .reveal, .reveal.revealed { opacity: 1 !important; transform: none !important; transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

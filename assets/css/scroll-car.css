@@ -1,0 +1,104 @@
+/* ==========================================================================
+   scroll-car.css — scroll-linked flying car (desktop only)
+   Load AFTER styles.css and responsive-fix.css.
+   ========================================================================== */
+
+/* ---------- 1. Positioning context for the car ---------- */
+
+.car-fly-wrap {
+  position: relative;
+  overflow: visible;   /* CRITICAL: hero's overflow:hidden would trap the car */
+}
+
+/* The hero loses its own overflow:hidden so the car can escape downward.
+   Its inner bg-shape is already clipped by .home__bg-shape's border-radius. */
+.car-fly-wrap .home {
+  overflow: visible;
+}
+
+.car-fly-wrap .home,
+.car-fly-wrap .services {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- 2. Invisible anchors ---------- */
+
+.hero-car-anchor,
+.services-car-anchor,
+.fleet-car-anchor {
+  position: absolute;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  pointer-events: none;
+  visibility: hidden;   /* measurable but invisible */
+}
+
+/* Anchor 1 — centre of the hero carousel visual */
+.hero-car-anchor {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Anchor 2 — sits between the services heading and the service grid.
+   It is placed in normal flow via a small spacer so it never collides
+   with the heading or the cards. */
+.services-car-anchor {
+  position: relative;
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+}
+
+/* Anchor 3 — aligned to the BACK fleet card's IMAGE area */
+.fleet-car-anchor {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0);
+}
+
+/* Make sure the fleet cards block is a positioning context */
+.fleet-cards { position: relative; }
+
+/* ---------- 3. Flying car ---------- */
+
+.flying-car {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;             /* JS overrides once from anchor 1 */
+  height: auto;
+  max-width: none;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform;   /* GPU layer for smooth scrub */
+  transform-origin: 50% 50%;
+  z-index: 6;               /* above hero/services, below front fleet card */
+  opacity: 0;               /* revealed once measured */
+  backface-visibility: hidden;
+}
+
+.flying-car.is-ready { opacity: 1; transition: opacity .35s ease; }
+
+/* Docked: drop behind the offset/front card */
+.flying-car.is-docked { z-index: 1; }
+
+/* Front (offset) fleet card must always win */
+.fleet-card              { position: relative; z-index: 1; }
+.fleet-card--offset      { position: relative; z-index: 2; }
+
+/* ---------- 4. Mobile / reduced motion ---------- */
+
+@media (max-width: 899px) {
+  .flying-car { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flying-car { display: none !important; }
+}

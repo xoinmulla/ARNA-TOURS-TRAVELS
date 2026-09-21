@@ -1,0 +1,7 @@
+
+
+Database upgrade for this build:
+- Import database/008_testimonials_and_tour_categories.sql after the existing database migrations.
+- This adds testimonials and editable Tour Package navbar categories and safely adds category_id to existing tour_packages.
+
+After the existing database migrations, import database/009_home_tour_packages.sql for the homepage Tour Packages controls.

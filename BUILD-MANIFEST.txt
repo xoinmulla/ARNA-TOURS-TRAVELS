@@ -1,0 +1,10 @@
+Arna Tours & Travels Final QA Build
+Date: 2026-09-17
+Stack: PHP + MySQL + WAMP
+Database: arna_tours_travels
+Deploy root: ARNA-TOURS-TRAVELS
+Source reports consolidated: 3
+Latest report: SOURCE-QA-REPORT-3.xlsx
+Final report: FINAL_CONSOLIDATED_QA_REPORT.xlsx
+Runtime browser/Lighthouse verification: required on WAMP
+AI agent: pending backend runtime sign-off
