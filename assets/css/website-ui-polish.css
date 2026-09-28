@@ -164,3 +164,47 @@ footer .footer-contact-actions a:hover{transform:translateY(-2px)!important;back
 .arna-page-logo{display:inline-block;width:110px;height:110px;object-fit:contain}
 .admin-brand-logo{width:62px;height:62px;object-fit:contain;display:block;flex:0 0 auto}
 @media(max-width:767px){.arna-header-logo{width:48px;height:48px}.arna-brand-link .nav-logo-text{font-size:16px}.arna-footer-logo{width:82px;height:82px}.arna-page-logo{width:90px;height:90px}}
+
+/* ---------- Arna homepage travel hero background ---------- */
+.arna-hero-section{
+  isolation:isolate;
+  background-image:linear-gradient(90deg,rgba(19,4,36,.93) 0%,rgba(19,4,36,.80) 42%,rgba(19,4,36,.58) 70%,rgba(19,4,36,.72) 100%),url('../img/arna-hero-travel-bg.webp');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.arna-hero-section:after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(19,4,36,.22),rgba(19,4,36,.10) 45%,rgba(19,4,36,.52));
+}
+.booking-selected-vehicle{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding:12px 14px;border:1px solid rgba(139,77,245,.16);border-radius:18px;background:linear-gradient(135deg,#faf7ff,#fff);box-shadow:0 10px 30px rgba(22,9,43,.06)}
+.booking-selected-vehicle-thumb{width:64px;height:52px;flex:0 0 64px;border-radius:13px;background:#f0eafb;display:grid;place-items:center;overflow:hidden}
+.booking-selected-vehicle-thumb img{width:100%;height:100%;object-fit:contain;padding:4px}
+.booking-selected-vehicle-label{display:block;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8b4df5}
+.booking-selected-vehicle strong{display:block;margin-top:2px;font-size:15px;color:#16092b}
+.booking-selected-vehicle small{display:block;margin-top:2px;color:#6d6876;font-size:11px}
+.booking-selected-vehicle-change{margin-left:auto;white-space:nowrap;font-size:11px;font-weight:800;color:#8b4df5;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:767px){
+  .arna-hero-section{background-position:60% center;background-image:linear-gradient(180deg,rgba(19,4,36,.90),rgba(19,4,36,.70) 52%,rgba(19,4,36,.92)),url('../img/arna-hero-travel-bg.webp')}
+  .booking-selected-vehicle{align-items:flex-start;padding:11px 12px}
+  .booking-selected-vehicle-change{font-size:10px}
+}
+
+/* ---------- Tour hero video carousel ---------- */
+.tour-hero-carousel{position:relative;width:100%;max-width:620px;margin-left:auto}
+.tour-video-carousel{position:relative;overflow:hidden;border-radius:30px;border:1px solid rgba(255,255,255,.14);background:#0d0618;box-shadow:0 30px 90px rgba(0,0,0,.30);aspect-ratio:16/10}
+.tour-video-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease}
+.tour-video-slide.is-active{opacity:1;visibility:visible}
+.tour-video-slide video{width:100%;height:100%;display:block;object-fit:cover}
+.tour-video-overlay{position:absolute;inset:auto 0 0;padding:45px 20px 20px;background:linear-gradient(transparent,rgba(10,3,19,.85));pointer-events:none}
+.tour-video-overlay span{display:inline-flex;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.tour-video-controls{display:flex;align-items:center;justify-content:space-between;position:absolute;left:16px;right:16px;bottom:16px;z-index:5}
+.tour-video-arrow{width:40px;height:40px;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(19,4,36,.62);color:#fff;backdrop-filter:blur(12px);cursor:pointer;font-size:17px}
+.tour-video-dots{display:flex;align-items:center;gap:7px}
+.tour-video-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer}
+.tour-video-dot.is-active{width:24px;border-radius:999px;background:#9d5eff}
+@media(max-width:767px){.tour-hero-carousel{max-width:none}.tour-video-carousel{border-radius:22px;aspect-ratio:16/11}.tour-video-controls{left:11px;right:11px;bottom:11px}.tour-video-arrow{width:36px;height:36px}}

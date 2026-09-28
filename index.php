@@ -5,6 +5,7 @@ session_start();
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/models/Service.php';
+require_once __DIR__ . '/models/Vehicle.php';
 require_once __DIR__ . '/models/TourPackage.php';
 require_once __DIR__ . '/models/Testimonial.php';
 
@@ -17,6 +18,17 @@ if (!$siteHomeTourPackages) {
   $siteHomeTourPackages = array_slice($siteTourPackageModel->all(null, 'ACTIVE'), 0, 6);
 }
 $siteTestimonials = (new Testimonial())->all(true);
+
+// Optional vehicle selection passed from the Fleet page. This only pre-fills the
+// public form; booking assignment remains controlled by the existing admin workflow.
+$selectedVehicle = null;
+$selectedVehicleId = filter_var($_GET['vehicle_id'] ?? null, FILTER_VALIDATE_INT);
+if ($selectedVehicleId) {
+  $candidateVehicle = (new Vehicle())->find((int) $selectedVehicleId);
+  if ($candidateVehicle && ($candidateVehicle['status'] ?? '') === 'AVAILABLE') {
+    $selectedVehicle = $candidateVehicle;
+  }
+}
 
 sendSecurityHeaders();
 ?>
@@ -305,7 +317,7 @@ sendSecurityHeaders();
 
       <!-- Header CTA -->
       <div class="flex items-center gap-4">
-        <a href="#booking"
+        <a href="vehicles.php"
           class="nav-cta hidden sm:inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider px-5 py-2.5 rounded-full bg-white text-tapsi-purple hover:bg-tapsi-electric hover:text-white transition-all transform hover:-translate-y-0.5 shadow-md shadow-purple-950/40">
           Book a Ride
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -340,7 +352,7 @@ sendSecurityHeaders();
       </div>
       <a href="#testimonials" class="text-sm font-semibold text-white/80 py-3 px-3 rounded-xl">Clients</a>
       <a href="#benefits" class="text-sm font-semibold text-white/80 py-3 px-3 rounded-xl">Benefits</a>
-      <a href="#booking"
+      <a href="vehicles.php"
         class="text-center text-xs font-bold uppercase tracking-wider py-3.5 rounded-full bg-white text-tapsi-purple mt-2">Book
         a Ride</a>
     </div>
@@ -348,7 +360,7 @@ sendSecurityHeaders();
 
   <!-- ==================== SECTION 1: HERO SECTION ==================== -->
   <section id="hero"
-    class="relative min-h-screen bg-tapsi-purple bg-storyboard-grid flex flex-col justify-between pt-32 pb-16 px-6 lg:px-14 overflow-hidden">
+    class="relative min-h-screen bg-tapsi-purple bg-storyboard-grid arna-hero-section flex flex-col justify-between pt-32 pb-16 px-6 lg:px-14 overflow-hidden">
     <!-- Ambient glowing visual shapes -->
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
     <div
@@ -648,6 +660,24 @@ sendSecurityHeaders();
 
             <div id="bookingAlert" class="booking-alert hidden" role="alert" aria-live="polite"></div>
 
+            <?php if ($selectedVehicle): ?>
+              <div class="booking-selected-vehicle" aria-live="polite">
+                <div class="booking-selected-vehicle-thumb">
+                  <?php if (!empty($selectedVehicle['image'])): ?>
+                    <img src="<?= e($selectedVehicle['image']) ?>" alt="<?= e($selectedVehicle['vehicle_name']) ?>">
+                  <?php else: ?>
+                    <span>🚕</span>
+                  <?php endif; ?>
+                </div>
+                <div class="min-w-0">
+                  <span class="booking-selected-vehicle-label">Selected vehicle</span>
+                  <strong><?= e($selectedVehicle['vehicle_name']) ?></strong>
+                  <small><?= e($selectedVehicle['vehicle_type'] ?: 'Travel Vehicle') ?> · <?= (int) $selectedVehicle['seating_capacity'] ?> Seats</small>
+                </div>
+                <a href="vehicles.php" class="booking-selected-vehicle-change">Change</a>
+              </div>
+            <?php endif; ?>
+
             <form id="bookingForm" novalidate data-site-today="<?= e(appToday()) ?>">
               <input type="hidden" name="csrf_token" value="<?= e($csrfToken) ?>">
               <input type="text" name="website" class="booking-honeypot" tabindex="-1" autocomplete="off"
@@ -787,6 +817,11 @@ sendSecurityHeaders();
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <?php foreach ($websiteServices as $service): ?>
+          <?php
+          $serviceTitle = strtolower((string) ($service['title'] ?? ''));
+          $isTaxiService = str_contains($serviceTitle, 'taxi') || str_contains($serviceTitle, 'cab');
+          $serviceCtaUrl = $isTaxiService ? 'vehicles.php' : '#booking';
+          ?>
           <article
             class="rounded-3xl bg-white border border-purple-100 p-6 shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all">
             <div class="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-2xl mb-5">
@@ -794,7 +829,7 @@ sendSecurityHeaders();
             </div>
             <h3 class="text-lg font-extrabold"><?= e($service['title']) ?></h3>
             <p class="mt-2 text-xs leading-relaxed text-tapsi-slateText"><?= e($service['short_description']) ?></p>
-            <a href="#booking"
+            <a href="<?= e($serviceCtaUrl) ?>"
               class="inline-flex min-h-[44px] items-center mt-4 text-xs font-bold uppercase tracking-wider text-tapsi-accent">Request
               this service <span class="ml-2">→</span></a>
           </article>
@@ -971,7 +1006,7 @@ sendSecurityHeaders();
           <div
             class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-tapsi-lightText">
             <span>Local • Airport • Outstation</span>
-            <a href="#booking" class="font-semibold text-tapsi-electric">Book a ride →</a>
+            <a href="vehicles.php" class="font-semibold text-tapsi-electric">Book a ride →</a>
           </div>
         </div>
 
@@ -1367,7 +1402,8 @@ sendSecurityHeaders();
       <!-- Copyright & Bottom Disclaimers -->
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-tapsi-lightText gap-4">
         <div>
-          © <?= date('Y') ?> Arna Tour & Travels. All rights reserved. Travel services across India.
+          © <?= date('Y') ?> Arna Tour & Travels. All rights reserved. Travel services across India. <br><br> Designed and Developed by <a href="https://www.dharwadhubballitutor.com" target="_blank" rel="noopener noreferrer"
+            class="hover:text-white transition-colors">DharwadHubballiTutor</a>.
         </div>
         <div class="flex items-center gap-6">
           <a href="contact.php#policies" class="hover:text-white transition-colors">Privacy Policy</a>

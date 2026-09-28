@@ -49,9 +49,7 @@ function adminHeader(string $title, string $subtitle = ''): void
                     class="<?= adminNavActive('packages.php') ?>" href="packages.php"><i class="ri-map-pin-line"></i>Tour
                     Packages</a><a class="<?= adminNavActive('home-tour-packages.php') ?>" href="home-tour-packages.php"><i
                         class="ri-home-smile-2-line"></i>Homepage Tours</a><a class="<?= adminNavActive('services.php') ?>"
-                    href="services.php"><i class="ri-service-line"></i>Services</a><a
-                    class="<?= adminNavActive('destinations.php') ?>" href="destinations.php"><i
-                        class="ri-map-pin-2-line"></i>Destinations</a><a class="<?= adminNavActive('drivers.php') ?>"
+                    href="services.php"><i class="ri-service-line"></i>Services</a><a class="<?= adminNavActive('drivers.php') ?>"
                     href="drivers.php"><i class="ri-steering-2-line"></i>Drivers</a><a
                     class="<?= adminNavActive('testimonials.php') ?>" href="testimonials.php"><i
                         class="ri-chat-quote-line"></i>Testimonials</a><a href="../index.php"><i
@@ -68,7 +66,8 @@ function adminHeader(string $title, string $subtitle = ''): void
                 </div>
                 <div class="admin-user">
                     <div class="user-info text-end">
-                        <strong><?= e($admin['name'] ?? 'Admin') ?></strong><small>Administrator</small></div>
+                        <strong><?= e($admin['name'] ?? 'Admin') ?></strong><small>Administrator</small>
+                    </div>
                     <div class="admin-avatar"><?= e(adminInitials($admin['name'] ?? 'Admin')) ?></div><a
                         class="btn-admin btn-light" href="logout.php" title="Logout"><i
                             class="ri-logout-box-r-line"></i></a>
@@ -79,6 +78,9 @@ function adminHeader(string $title, string $subtitle = ''): void
 function adminFooter(): void
 { ?>
             </div>
+            <footer class="admin-footer">
+                Designed &amp; Developed By <strong>DharwadHubballiTutor</strong>
+            </footer>
         </main>
         <script>const toggle = document.getElementById('sidebarToggle'), sidebar = document.getElementById('adminSidebar'), backdrop = document.getElementById('sidebarBackdrop'); if (toggle) { toggle.onclick = () => { sidebar.classList.toggle('open'); backdrop.classList.toggle('show') } } if (backdrop) { backdrop.onclick = () => { sidebar.classList.remove('open'); backdrop.classList.remove('show') } }</script>
     </body>

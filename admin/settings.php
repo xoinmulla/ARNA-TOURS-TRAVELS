@@ -47,7 +47,8 @@ adminHeader('Settings', 'Manage business contact and booking configuration.');
         <div class="col-12"><label class="form-label">Business Address</label><input class="form-control"
                 name="business_address" value="<?= e($settings['business_address']['setting_value'] ?? '') ?>"></div>
         <div class="col-12"><label class="form-label">Booking Notice</label><textarea class="form-control"
-                name="booking_notice" rows="4"><?= e($settings['booking_notice']['setting_value'] ?? '') ?></textarea></div>
+                name="booking_notice" rows="4"><?= e($settings['booking_notice']['setting_value'] ?? '') ?></textarea>
+        </div>
         <div class="col-12"><button class="btn-admin btn-primary"><i class="ri-save-line"></i> Save Settings</button>
         </div>
     </form>

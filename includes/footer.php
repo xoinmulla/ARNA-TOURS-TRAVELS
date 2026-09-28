@@ -7,6 +7,7 @@
     <strong style="font-size:20px">Arna Tour & Travels<span style="color:#8b4df5">.</span></strong>
     <p style="margin:10px 0 0;color:#c4b9d3;font-size:13px">Premium travel support for local, airport and outstation
       journeys across India.</p>
+
     <div class="site-footer-socials" style="justify-content:center">
       <a href="<?= e(defined('ARNA_INSTAGRAM_URL') ? ARNA_INSTAGRAM_URL : 'https://www.instagram.com/arnatoursandtravels/') ?>"
         target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24">
